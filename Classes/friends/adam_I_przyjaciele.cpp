@@ -1,6 +1,9 @@
 #include <iostream>
 #define _USE_MATH_DEFINES // w celu użycia stałej M_PI, która nie jest zdefiniowana w standardowym C/C++
 #include <cmath>
+#ifndef M_PI
+#define M_PI 3.141592
+#endif
 using namespace std;
 // Definicja klasy Promien:
 class Promien {
@@ -95,4 +98,4 @@ cout << "Pole powierzchni kuli wynosi: " << kula.pole(promien) << endl;
 * Obiektem promien klasy Promien jest argument wywołania metod objetosc() i pole().
 */
 return 0;
-}```
+}
