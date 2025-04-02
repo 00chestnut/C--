@@ -4,36 +4,46 @@ using namespace std;
 class Tablica
 {
     int SIZE;
-    int *dynArr = new int[SIZE];
+    int *dynArr;
 
 public:
-    void setSize(int siize)
+    void setSize(int size)
     {
-        SIZE = siize;
+        SIZE = size;
     }
     int getSize()
     {
         return SIZE;
     }
-    void fill(int SIZE)
+    void fill()
     {
         for (int i = 0; i < SIZE; i++)
         {
-            dynArr[i] = rand() % 1001;
+            dynArr[i] = rand() % 1001 + 1;
         }
+    }
+    ~Tablica()
+    {
+        delete[] dynArr;
     }
     Tablica(int size)
     {
         SIZE = size;
         dynArr = new int[SIZE];
-        fill(size);
-    };
+        fill();
+    }
+    void display()
+    {
+        for (int i = 0; i < SIZE; i++)
+        {
+            cout << i << ": " << dynArr[i] << endl;
+        }
+    }
 };
 
 int main()
 {
-
-    Tablica tab;
-    return 00;
+    Tablica tab(30);
+    tab.display();
+    return 0;
 }
-// https://arkusze.pl/zawodowy/inf04-2025-styczen-egzamin-zawodowy-praktyczny.pdf
