@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 int main() {
     const char* str1 = "123.456";
     const char* str2 = "789";
