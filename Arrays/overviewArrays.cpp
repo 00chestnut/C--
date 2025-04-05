@@ -2,7 +2,7 @@
 #include <cstdlib>  // For rand() and srand()
 #include <ctime>    // For time()
 #include <algorithm> // For std::sort
-
+// INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 using namespace std;
 
 // Function to fill a static array with random numbers
@@ -11,7 +11,7 @@ void fillStaticArray(int arr[], int size) {
         arr[i] = rand() % 100; // Random numbers between 0-99
     }
 }
-
+// INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Function to fill a dynamic array with random numbers
 void fillDynamicArray(int* arr, int size) {
     for (int i = 0; i < size; i++) {
@@ -26,7 +26,7 @@ void printArray(int arr[], int size) {
     }
     cout << endl;
 }
-
+// INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Function to find the minimum value in an array
 int findMin(int arr[], int size) {
     int minVal = arr[0];
@@ -44,7 +44,7 @@ int findMax(int arr[], int size) {
     }
     return maxVal;
 }
-
+// INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Function to calculate the sum of elements in an array
 int findSum(int arr[], int size) {
     int sum = 0;
@@ -69,7 +69,7 @@ void bubbleSort(int arr[], int size) {
         }
     }
 }
-
+// INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 int main() {
     srand(time(0)); // Seed for random number generation
     
@@ -77,7 +77,7 @@ int main() {
     const int staticSize = 10;
     int staticArr[staticSize];
     fillStaticArray(staticArr, staticSize);
-    
+    // INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
     cout << "Static Array: ";
     printArray(staticArr, staticSize);
     cout << "Min: " << findMin(staticArr, staticSize) << endl;
@@ -94,9 +94,9 @@ int main() {
     cout << "\nEnter size for dynamic array: ";
     cin >> dynamicSize;
     int* dynamicArr = new int[dynamicSize];
-    
+    // INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
     fillDynamicArray(dynamicArr, dynamicSize);
-    
+    // INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
     cout << "Dynamic Array: ";
     printArray(dynamicArr, dynamicSize);
     cout << "Min: " << findMin(dynamicArr, dynamicSize) << endl;
@@ -108,7 +108,7 @@ int main() {
     sort(dynamicArr, dynamicArr + dynamicSize);
     cout << "Sorted Dynamic Array: ";
     printArray(dynamicArr, dynamicSize);
-    
+    // INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
     // Free allocated memory
     delete[] dynamicArr;
     return 0;
