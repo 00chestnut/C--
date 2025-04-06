@@ -69,6 +69,30 @@ void bubbleSort(int arr[], int size) {
         }
     }
 }
+
+void insertionSort(int arr[], int size) {
+    for (int i = 1; i < size; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void selectionSort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
 // INDEX PIERWSZY TABLICY TO ZERO !!!!!!!!!!!!!!!!!!!!!!!!!!!
 int main() {
     srand(time(0)); // Seed for random number generation
@@ -86,6 +110,8 @@ int main() {
     cout << "Average: " << findAverage(staticArr, staticSize) << endl;
     
     bubbleSort(staticArr, staticSize);
+    selectionSort(staticArr, staticSize);
+    insertionSort(staticArr, staticSize);
     cout << "Sorted Static Array: ";
     printArray(staticArr, staticSize);
     
