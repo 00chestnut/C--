@@ -1,98 +1,49 @@
 #include <iostream>
-#include <thread>
+#include <string>
 
-/**
- * The Singleton class defines the `GetInstance` method that serves as an
- * alternative to constructor and lets clients access the same instance of this
- * class over and over.
- */
 class Singleton
 {
-
-    /**
-     * The Singleton's constructor should always be private to prevent direct
-     * construction calls with the `new` operator.
-     */
-
-protected:
-    Singleton(const std::string& value) : value_(value) {}
-
-    static Singleton* singleton_;
+private:
+    // Private static instance pointer to hold the unique instance
+    static Singleton* instance_;
     std::string value_;
 
+    // Private constructor to prevent direct instantiation
+    Singleton(const std::string& value) : value_(value) {}
+
 public:
-
-    /**
-     * Singletons should not be cloneable.
-     */
-    Singleton(Singleton &other) = delete;
-    /**
-     * Singletons should not be assignable.
-     */
-    void operator=(const Singleton &) = delete;
-    /**
-     * This is the static method that controls the access to the singleton
-     * instance. On the first run, it creates a singleton object and places it
-     * into the static field. On subsequent runs, it returns the client existing
-     * object stored in the static field.
-     */
-
-    static Singleton* GetInstance(const std::string& value);
-    /**
-     * Finally, any singleton should define some business logic, which can be
-     * executed on its instance.
-     */
-    void SomeBusinessLogic()
+    // Static method to get the instance of the Singleton class
+    static Singleton* GetInstance(const std::string& value)
     {
-        // ...
+        // If no instance exists, create one
+        if (instance_ == nullptr)
+        {
+            instance_ = new Singleton(value);
+        }
+        return instance_; // Return the existing instance
     }
 
+    // Method to get the value of the Singleton instance
     std::string value() const {
         return value_;
-    } 
+    }
 };
 
-Singleton* Singleton::singleton_ = nullptr;
-
-/**
- * Static methods should be defined outside the class.
- */
-Singleton* Singleton::GetInstance(const std::string& value)
-{
-    /**
-     * This is a safer way to create an instance. instance = new Singleton is
-     * dangerous in case two instance threads want to access it at the same time.
-     */
-    if (singleton_ == nullptr) {
-        singleton_ = new Singleton(value);
-    }
-    return singleton_;
-}
-
-void ThreadFoo() {
-    // Following code emulates slow initialization.
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    Singleton* singleton = Singleton::GetInstance("FOO");
-    std::cout << singleton->value() << "\n";
-}
-
-void ThreadBar() {
-    // Following code emulates slow initialization.
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    Singleton* singleton = Singleton::GetInstance("BAR");
-    std::cout << singleton->value() << "\n";
-}
+// Initialize the static instance pointer to nullptr
+Singleton* Singleton::instance_ = nullptr;
 
 int main()
 {
-    std::cout << "If you see the same value, then singleton was reused (yay!)\n"
-              << "If you see different values, then 2 singletons were created (booo!!)\n\n"
-              << "RESULT:\n";
-    
-    std::thread t1(ThreadFoo);
-    std::thread t2(ThreadBar);
-    t1.join();
-    t2.join();
+    // Get the Singleton instance using GetInstance
+    Singleton* singleton1 = Singleton::GetInstance("First Instance");
+    std::cout << singleton1->value() << "\n";  // Output: First Instance
+
+    // Trying to create another instance (but it's the same one)
+    Singleton* singleton2 = Singleton::GetInstance("Second Instance");
+    std::cout << singleton2->value() << "\n";  // Output: First Instance
+
+    // Both should point to the same instance
+    std::cout << (singleton1 == singleton2 ? "Same instance!" : "Different instances!") << "\n";
 
     return 0;
 }
