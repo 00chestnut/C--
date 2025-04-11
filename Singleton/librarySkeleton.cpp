@@ -50,36 +50,6 @@ public:
     }
 };
 
-// Member class
-class Member
-{
-private:
-    string name;
-    int memberId;
-
-public:
-    // Constructor
-    Member(const string &name, int memberId)
-        : name(name), memberId(memberId) {}
-
-    // Getter for member info
-    string getName() const { return name; }
-    int getMemberId() const { return memberId; }
-
-    // Method to interact with library system
-    void checkOutBook(Book &book)
-    {
-        cout << name << " is trying to check out \"" << book.getTitle() << "\"...\n";
-        book.checkOut();
-    }
-
-    void returnBook(Book &book)
-    {
-        cout << name << " is trying to return \"" << book.getTitle() << "\"...\n";
-        book.returnBook();
-    }
-};
-
 // Library class that holds books
 class Library
 {
@@ -115,20 +85,6 @@ public:
             cout << (books[i]->isCheckedOutStatus() ? " [Checked Out]" : " [Available]") << "\n";
         }
     }
-
-    // Method to find a book by title
-    Book *findBookByTitle(const string &title)
-    {
-        for (int i = 0; i < currentBookCount; ++i)
-        {
-            if (books[i]->getTitle() == title)
-            {
-                return books[i];
-            }
-        }
-        return nullptr; // Return nullptr if the book is not found
-    }
-
     // Destructor to clean up dynamically allocated memory
     ~Library()
     {
