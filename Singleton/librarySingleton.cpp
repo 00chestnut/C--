@@ -150,7 +150,7 @@ public:
     LibrarySystem() {}
 
     // Method to register a book in the library
-    void registerBook(const string &title, const string &author) // explain to me so i understand why is it written like &this
+    void registerBook(const string &title, const string &author)
     {
         library.addBook(title, author);
     }
