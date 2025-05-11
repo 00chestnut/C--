@@ -1,0 +1,7 @@
+isalpha(c)	c jest literą (dużą lub małą)
+isupper(c)	c jest dużą literą
+islower(c)	c jest małą literą
+isdigit(c)	c jest cyfrą
+ispunct(c)	c jest znakiem interpunkcyjnym
+isalnum(c)	c jest literą lub cyfrą
+isspace(c)	c to spacja, tab, enter itp.
